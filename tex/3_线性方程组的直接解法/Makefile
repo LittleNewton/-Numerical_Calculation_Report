@@ -1,6 +1,6 @@
 PROJECT_NAME = 3_线性方程组的直接解法
 
-main.pdf : *.tex Makefile section/*.tex ../style/*.tex
+main.pdf : *.tex Makefile ../style/*.tex
 	xelatex --synctex=-1 main.tex
 	#biber main
 	#bibtex chapter/*.aux
