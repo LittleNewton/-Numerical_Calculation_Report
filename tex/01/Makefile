@@ -1,4 +1,4 @@
-main.pdf : *.tex Makefile
+main.pdf : *.tex Makefile section/*.tex style/*.tex
 	xelatex --synctex=-1 main.tex
 	#biber main
 	#bibtex chapter/*.aux
@@ -13,8 +13,9 @@ clean:
 	-rm *.aux *.out *.log *.bbl *.toc *.blg
 	-rm *.bbl
 	-rm *.blg
-	-rm chapter/*.bbl
-	-rm chapter/*.blg
+	-rm section/*.bbl
+	-rm section/*.blg
+	-rm section/*.aux
 	-rm *.bcf
 	-rm *.xml
 	-rm *.synctex
