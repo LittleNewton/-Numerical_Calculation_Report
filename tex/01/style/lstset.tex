@@ -1,0 +1,41 @@
+% 用来设置附录中代码的样式
+
+\lstset{
+    basicstyle          =   \sffamily,
+    keywordstyle        =   \bfseries,
+    commentstyle        =   \rmfamily\itshape,
+    stringstyle         =   \ttfamily,
+    flexiblecolumns,
+    numbers             =   left,
+    showspaces          =   false,
+    numberstyle         =   \zihao{-5}\ttfamily,
+    showstringspaces    =   false,
+    captionpos          =   t,
+    frame               =   lrtb,
+}
+
+\lstdefinestyle{Python}{
+    language        =   Python,
+    basicstyle      =   \zihao{-5}\ttfamily,
+    numberstyle     =   \zihao{-5}\ttfamily,
+    keywordstyle    =   \color{blue},
+    keywordstyle    =   [2] \color{teal}, % just to check that it works
+    stringstyle     =   \color{magenta},
+    commentstyle    =   \color{red}\ttfamily,
+    breaklines      =   true,
+    columns         =   fixed,
+    basewidth       =   0.5em,
+}
+
+\lstdefinestyle{MATLAB}{
+    language        =   Matlab,
+    basicstyle      =   \zihao{-5}\ttfamily,
+    numberstyle     =   \zihao{-5}\ttfamily,
+    keywordstyle    =   \color{blue},
+    keywordstyle    =   [2] \color{teal}, % just to check that it works
+    stringstyle     =   \color{magenta},
+    commentstyle    =   \color{red}\ttfamily,
+    breaklines      =   true,
+    columns         =   fixed,
+    basewidth       =   0.5em,
+}

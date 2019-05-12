@@ -1,0 +1,72 @@
+\documentclass[UTF8, a4paper, zihao=-4, bibliography=totoc]{ctexrep}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, pdfstartview=FitH, linkcolor=black, anchorcolor=violet, citecolor=magenta]{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{tabularx, booktabs}
+\usepackage{longtable}
+\usepackage{supertabular}
+\usepackage{array, makecell}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage{ctex}
+\usepackage{abstract}
+\usepackage{listings}
+\usepackage{etoc}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[backend=biber, style=gb7714-2015]{biblatex}
+\addbibresource[location=local]{reference.bib}
+\usepackage{pythonhighlight}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[toc]{appendix}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+%\include{style/toc_style}   % 如果不include此选项，那么将获得一个朴素的ToC页面
+%\include{style/caption_style}
+\include{style/ctex_setting}
+\include{style/lstset}
+\include{style/env_def}
+\include{style/algorithm_style}
+\include{style/python_style}
+\newgeometry{
+    left=3.0cm,
+    right=2.0cm,
+    top=2.5cm,
+    bottom=2.5cm
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{center}
+    {\zihao{3} \bf 云南大学数学与统计学院}\\
+    {\zihao{3} \bf 上机实践报告}
+\end{center}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf ff.py},
+    label       =   {ff.py}
+]{get_root.py}
+
+\end{document}

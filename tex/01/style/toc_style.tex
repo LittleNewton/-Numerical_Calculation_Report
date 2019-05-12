@@ -1,0 +1,45 @@
+\etocsetlevel{authors}{1}
+\etocsetlevel{section}{2}
+\etocsetlevel{subsection}{3}
+\etocsettocdepth{subsection}
+\newcommand{\authorstotoc}[1]{\etoctoccontentsline{authors}{#1}}
+
+\newlength{\tocleft}
+\setlength{\tocleft}{4cm}
+
+\newlength{\tocsep}
+\setlength{\tocsep}{2em}
+
+\etocsetstyle{chapter}{}{}{
+    \etocifnumbered {
+        \makebox[0pt][r] {
+            \chaptername\ \etocnumber\hspace{\tocsep}
+        }
+    }
+    \textbf{\etocname\kern1em\relax\etocpage}\par
+    \etocifnumbered{}{\vspace{2ex}}
+}{}
+
+\etocsetstyle{section}{}{} {
+    \makebox[0pt][r] {
+        \etocnumber\hspace{\tocsep}
+    }
+    {\quad\quad}\etocname\kern1em\etocpage\par
+}{}
+
+\etocsetstyle{subsection}{}{} {
+    \makebox[0pt][r]{\etocnumber\hspace{\tocsep}
+    }
+    {\quad\quad\quad\quad}\etocname\kern1em\etocpage\par
+}{}
+
+\etocsetstyle{subsubsection}{}{} {
+    \makebox[0pt][r]{\etocnumber\hspace{\tocsep}
+    }
+    {\quad\quad\quad\quad\quad\quad\quad\quad}\etocname\kern1em\etocpage\par
+}{}
+
+\etocsettocstyle {\noindent{\LARGE \contentsname}\par
+    \thispagestyle{empty}%
+    \noindent\rule{\dimexpr\tocleft-\tocsep}{1pt}\par\vspace{3ex}%
+    \leftskip\tocleft\parindent0pt\def\TEMP{0}}{}
