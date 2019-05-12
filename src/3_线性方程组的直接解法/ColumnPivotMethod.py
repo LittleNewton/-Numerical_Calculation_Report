@@ -1,4 +1,4 @@
-# filename: 3.1 ColumnPivotMethod.py
+# filename: ColumnPivotMethod.py
 
 class Matrix:
     """Abatrct class representing a Matrix.

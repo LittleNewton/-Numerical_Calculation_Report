@@ -1,0 +1,115 @@
+\newcommand{\CourseName}{{\bf 课程名称：}}
+\newcommand{\Grade}{{\bf 年级：}}
+\newcommand{\Score}{{\bf 上机实践成绩：}}
+\newcommand{\Director}{{\bf 指导教师：}}
+\newcommand{\StudentName}{{\bf 学生姓名：}}
+\newcommand{\ProjectTitle}{{\bf 上机实践名称：}}
+\newcommand{\StudentID}{{\bf 学号：}}
+\newcommand{\Date}{{\bf 上机实践日期：}}
+\newcommand{\No}{{\bf 上机实践编号：}}
+\newcommand{\GroupNum}{{\bf 组号：}}
+\newcommand{\LastEditTine}{{\bf 最后修改时间：}}
+
+\newcommand{\ThisCourseName}{数值计算实验}
+\newcommand{\MyGrade}{2015级}
+\newcommand{\MyScore}{100}
+\newcommand{\MyDirector}{朱娟萍}
+\newcommand{\MyName}{刘鹏}
+\newcommand{\ThisProjectTitle}{非线性方程求根}
+\newcommand{\MyID}{20151910042}
+\newcommand{\ThisDate}{2017-10-16}
+\newcommand{\ThisNo}{No.1}
+\newcommand{\MyGroupNum}{1}
+\newcommand{\MyLastEditTine}{\today}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
+\newcommand{\xfill}[2][1ex]{{%
+  \dimen0=#2\advance\dimen0 by #1
+  \leaders\hrule height \dimen0 depth -#1\hfill%
+}}
+\newcommand{\xfilll}[2][1ex]{%
+  \dimen0=#2\advance\dimen0 by #1%
+  \leaders\hrule height \dimen0 depth -#1\hfill%
+}
+
+\begin{center}
+    {\zihao{3} \bf 云南大学数学与统计学院}\\
+    {\zihao{3} \bf 上机实践报告}
+\end{center}
+
+\begin{table}[h]
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|l|l|}
+        \hline
+            \CourseName \ThisCourseName     & \Grade \MyGrade       & \Score                        \\ \hline
+            \Director \MyDirector           & \StudentName \MyName  &                               \\ \hline
+            \ProjectTitle \ThisProjectTitle & \StudentID \MyID      & \Date \ThisDate               \\ \hline
+            \No \ThisNo                     & \GroupNum             & \LastEditTine \MyLastEditTine \\ \hline
+        \end{tabular}
+    }
+    \xfill{30pt}
+\end{table}
+
+\section{实验目的}
+
+1. 通过对所学的线性方程组直接求解的理论方法进行编程，提升程序编写水平；
+
+2. 通过对理论方法的编程实验，进一步掌握理论方法的每一个细节；
+
+3. 通过数值法求解，发现数值方法与符号方法的区别，并形成专业思维。
+
+\section{实验内容}
+
+1. 编程实现高斯-若尔当列主元消元法；
+
+2. 编程实现高斯-若尔当全主元消元法；
+
+3. 任选一种方案，Doolittle分解或者Crout分解，编程实现矩阵的LU分解；
+
+4. 编程实现三对角线矩阵的稀疏方式存储，然后对其进行LU分解。
+
+\section{实验平台}
+
+macOS
+
+Python 3.7.3；
+
+MATLAB R2017b win64；
+
+\section{实验记录与实验结果分析}
+
+\subsection{第1题}
+
+1题
+编程实现：用高斯-若尔当列主元消元法求下列方程的解[1]：
+
+\begin{equation}
+    \left\{\begin{aligned}
+        x_{1}+2 x_{2}+x_{3}     &=  2   \\
+        -2 x_{1}-2 x_{2}-x_{3}  &=  -3  \\
+        2 x_{1}-3 x_{2}-2 x_{3} &=  -1 
+    \end{aligned}\right.
+\end{equation}
+
+\subsubsection{程序代码}
+
+\lstinputlisting[
+    style       =   Python,
+    %caption     =   {\bf ff.py},
+    label       =   {get_root.py}
+]{../../src/3_线性方程组的直接解法/ColumnPivotMethod.py}
+
+\subsubsection{运行结果}
+
+\subsubsection{结果分析}
+
+由于二分法与埃特金方法的函数并不是一样的，前者是原函数，后者是迭代函数，所以很难写一个通用算法解决这个迭代函数的生成问题。所以这个class意义不是很大，不过可以通过对属性进行赋值，重复进行计算，也算有一定的灵活性。
+
+\section{实验体会}
+
+通过编程，复习了简单迭代法及其改进。明白了二分法与埃特金法的斯坦弗森过程之间的区别。
+
+\section{参考文献}
+
+[1] 金一庆, 陈越, 王冬梅. 数值方法[M]. 北京: 机械工业出版社; 2000.2.

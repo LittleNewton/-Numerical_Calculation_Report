@@ -1,0 +1,61 @@
+\documentclass[UTF8, a4paper, zihao=-4, bibliography=totoc]{ctexart}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, pdfstartview=FitH, linkcolor=black, anchorcolor=violet, citecolor=magenta]{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage{tabularx, booktabs}
+\usepackage{longtable}
+\usepackage{supertabular}
+\usepackage{array, makecell}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage{ctex}
+\usepackage{abstract}
+\usepackage{listings}
+\usepackage{etoc}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[backend=biber, style=gb7714-2015]{biblatex}
+\addbibresource[location=local]{reference.bib}
+\usepackage{pythonhighlight}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[toc]{appendix}
+\usepackage{xhfill}
+
+\input{../style/ctex_setting}
+\input{../style/lstset}
+\input{../style/env_def}
+\input{../style/algorithm_style}
+
+\newgeometry{
+    left=2.5cm,
+    right=2.0cm,
+    top=2.5cm,
+    bottom=2.5cm
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{section/header_table}
+\input{section/routine}
+
+\end{document}

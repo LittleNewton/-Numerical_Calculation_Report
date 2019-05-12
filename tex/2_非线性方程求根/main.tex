@@ -37,17 +37,11 @@
 \usepackage[toc]{appendix}
 \usepackage{xhfill}
 
-\makeatletter
-\def\BState{\State\hskip-\ALG@thistlm}
-\makeatother
+\input{../style/ctex_setting}
+\input{../style/lstset}
+\input{../style/env_def}
+\input{../style/algorithm_style}
 
-%\include{style/toc_style}   % 如果不include此选项，那么将获得一个朴素的ToC页面
-%\include{style/caption_style}
-\include{../style/ctex_setting}
-\include{../style/lstset}
-\include{../style/env_def}
-\include{../style/algorithm_style}
-\include{../style/python_style}
 \newgeometry{
     left=2.5cm,
     right=2.0cm,
@@ -61,9 +55,7 @@
 
 \begin{document}
 
-\include{section/header_table}
-\include{section/routine}
-
-
+\input{section/header_table}
+\input{section/routine}
 
 \end{document}
