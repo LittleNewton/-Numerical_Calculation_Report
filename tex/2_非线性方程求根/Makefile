@@ -7,7 +7,6 @@ main.pdf : *.tex Makefile section/*.tex ../style/*.tex
 	#xelatex --synctex=-1 main.tex
 	#xelatex --synctex=-1 main.tex
 	mv main.pdf ../../build/${PROJECT_NAME}.pdf
-	make clean
 
 clean:
 	-rm *.aux
