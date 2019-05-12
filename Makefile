@@ -6,7 +6,7 @@ TASK2_DETAIL = ${TASK2}section/*.tex/
 ALL_OBJ = 
 
 generate : ${TASK2}*.tex/ Makefile ${TASK2}Makefile
-	#make clean
+	-make clean
 	-mkdir build
 	cd ${TASK2} && make && make clean
 	cd ${TASK3} && make && make clean

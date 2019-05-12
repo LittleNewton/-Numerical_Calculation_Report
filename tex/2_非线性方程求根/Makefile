@@ -20,4 +20,4 @@ clean:
 	-rm *.bcf
 	-rm *.xml
 	-rm *.synctex
-	#-rm main.pdf
+	-rm main.pdf

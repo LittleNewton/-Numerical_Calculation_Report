@@ -77,16 +77,6 @@
 \newcommand{\MyGroupNum}{1}
 \newcommand{\MyLastEditTine}{\today}
 
-\newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
-\newcommand{\xfill}[2][1ex]{{%
-  \dimen0=#2\advance\dimen0 by #1
-  \leaders\hrule height \dimen0 depth -#1\hfill%
-}}
-\newcommand{\xfilll}[2][1ex]{%
-  \dimen0=#2\advance\dimen0 by #1%
-  \leaders\hrule height \dimen0 depth -#1\hfill%
-}
-
 \begin{center}
     {\zihao{3} \bf 云南大学数学与统计学院}\\
     {\zihao{3} \bf 上机实践报告}
@@ -103,7 +93,6 @@
             \No \ThisNo                     & \GroupNum             & \LastEditTine \MyLastEditTine \\ \hline
         \end{tabular}
     }
-    \xfill{30pt}
 \end{table}
 
 \section{实验目的}
@@ -129,14 +118,18 @@ MATLAB R2017b win64；
 \section{实验记录与实验结果分析}
 
 \subsection{第1题}
-
-用二分法求方程$x^2-x-1=0$的正根，要求精确到小数点后一位。[1]
+\begin{quote}
+    {\kaishu
+        用二分法求方程$x^2-x-1=0$的正根，要求精确到小数点后一位。[1]
+    }
+\end{quote}
 
 \subsection{第2题}
-
-请用埃特金方法编程求出$x=\tan⁡x$在$x=4.5$附近的根。
-
-解答：
+\begin{quote}
+    {\kaishu
+        请用埃特金方法编程求出$x=\tan⁡x$在$x=4.5$附近的根。
+    }
+\end{quote}
 
 由于程序比较简单，所以不铺张开写，两题合并写，而且可以对比，同一道题的迭代深度。
 \subsubsection{程序代码}
