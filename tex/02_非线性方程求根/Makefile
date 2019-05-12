@@ -1,10 +1,12 @@
-main.pdf : *.tex Makefile section/*.tex style/*.tex
+PROJECT_NAME = 02_非线性方程求根
+
+main.pdf : *.tex Makefile section/*.tex ../style/*.tex
 	xelatex --synctex=-1 main.tex
 	#biber main
 	#bibtex chapter/*.aux
 	#xelatex --synctex=-1 main.tex
 	#xelatex --synctex=-1 main.tex
-	#mv main.pdf ../build/20151910042-刘鹏-毕业论文.pdf
+	mv main.pdf ../../build/${PROJECT_NAME}.pdf
 	make clean
 
 clean:
