@@ -15,7 +15,7 @@
 \newcommand{\MyScore}{100}
 \newcommand{\MyDirector}{朱娟萍}
 \newcommand{\MyName}{刘鹏}
-\newcommand{\ThisProjectTitle}{非线性方程求根}
+\newcommand{\ThisProjectTitle}{线性方程组的直接解法}
 \newcommand{\MyID}{20151910042}
 \newcommand{\ThisDate}{2017-10-16}
 \newcommand{\ThisNo}{No.1}
@@ -23,14 +23,6 @@
 \newcommand{\MyLastEditTine}{\today}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
-\newcommand{\xfill}[2][1ex]{{%
-  \dimen0=#2\advance\dimen0 by #1
-  \leaders\hrule height \dimen0 depth -#1\hfill%
-}}
-\newcommand{\xfilll}[2][1ex]{%
-  \dimen0=#2\advance\dimen0 by #1%
-  \leaders\hrule height \dimen0 depth -#1\hfill%
-}
 
 \begin{center}
     {\zihao{3} \bf 云南大学数学与统计学院}\\
@@ -48,7 +40,6 @@
             \No \ThisNo                     & \GroupNum             & \LastEditTine \MyLastEditTine \\ \hline
         \end{tabular}
     }
-    \xfill{30pt}
 \end{table}
 
 \section{实验目的}
@@ -104,11 +95,91 @@ MATLAB R2017b win64；
 
 \subsubsection{结果分析}
 
-由于二分法与埃特金方法的函数并不是一样的，前者是原函数，后者是迭代函数，所以很难写一个通用算法解决这个迭代函数的生成问题。所以这个class意义不是很大，不过可以通过对属性进行赋值，重复进行计算，也算有一定的灵活性。
+本Python代码采用面向对象[2]的方式写成，首先是定义了一个Matrix类，用来存储矩阵，该类中的所有元素都是public的，这样设置是为了以后的编程调用方便。
+
+Matrix的实例A是一个三行四列的矩阵，其中最后一列是方程组中等号右边的元素，所以这个增广矩阵的计算应该遵循线性代数的法则，即在寻找列主元的时候，不能越界去增广列寻找；同样，一个已经找出过列主元的行，不应该再次存在列主元，所以要在以后的查找中剔除这一行。
+
+最后，输出的结果应该保持美观性，所以按照系数矩阵经过变换之后为单位矩阵的样式进行了重新排序。
+
+值得指出的是，Matrix的matrixTransform成员函数是用多态的方式写的，可以满足行数乘、行交换、行倍加等所有的矩阵初等变换方式。
+
+另外，由于本线性方程组一定存在唯一解，所以在排序与寻找主元的过程中，并没有加以判断，所以这并不是一个通用的程序。
+
+\subsection{第2题}
+
+编程实现：请用高斯-若尔当全主元消元法求下列矩阵的逆矩阵[1]：
+
+\begin{equation}
+    \mathbf{B} = \left[\begin{array}{rrrr}
+        {2} & {1} & {-3} & {-1} \\
+        {3} & {1} & {0} & {7} \\
+        {-1} & {2} & {4} & {-2} \\
+        {1} & {0} & {-1} & {5}
+    \end{array}\right]
+\end{equation}
+
+\subsubsection{程序代码}
+\lstinputlisting[
+    style       =   Python,
+    %caption     =   {\bf ff.py},
+    label       =   {get_root.py}
+]{../../src/3_线性方程组的直接解法/CompletePivotMethod.py}
+
+\subsubsection{代码分析}
+此段代码是在Code Box 1的基础上略微修改而得的，由于全主元的位置没有固定性，所以要把每一次找到的全主元的行列坐标都存储下来。其余部分与Code Box 1相同。
+
+\subsection{第3题}
+
+编程实现：利用LU分解法（Doolittle），求$[x_1,\ x_2,\ x_3,\ x_4]^\mathrm{T}$的数值解。
+
+\begin{equation}
+\left[ \begin{array}{rrrr}{12} & {-3} & {3} & {4} \\ {-18} & {3} & {-1} & {-1} \\ {1} & {1} & {1} & {1} \\ {3} & {1} & {-1} & {1}\end{array}\right] \cdot \left[ \begin{array}{c}{x_{1}} \\ {x_{2}} \\ {x_{3}} \\ {x_{4}}\end{array}\right]=\left[ \begin{array}{r}{15} \\ {-15} \\ {6} \\ {2}\end{array}\right]
+\end{equation}
+
+\subsubsection{程序代码}
+\lstinputlisting[
+    style       =   Python,
+    %caption     =   {\bf ff.py},
+    label       =   {get_root.py}
+]{../../src/3_线性方程组的直接解法/LU_Decomposition.py}
+
+\subsubsection{代码分析}
+
+通过生成的LU矩阵，可以轻易得到， 的数值解为 ，这也是解析解。
+
+代码仍旧是基于面向对象技术，程序的算法是基于紧凑法求解LU矩阵的形式化做法。
+
+如此编程，相对而言比较节约内存。
+
+\subsection{第4题}
+
+编程实现：用追赶法解下列严格对角优势的三对角线方程组，要求用稀疏格式存储矩阵，主内存占用为$\mathrm{O}(n)$，其中$n$为矩阵的行数。
+
+\begin{equation}
+\left[ \begin{array}{rrrrr}{4} & {-1} & {0} & {0} & {0} \\ {-1} & {4} & {-1} & {0} & {0} \\ {0} & {-1} & {4} & {-1} & {0} \\ {0} & {0} & {-1} & {4} & {-1} \\ {0} & {0} & {0} & {-1} & {4}\end{array}\right] \cdot \left[ \begin{array}{c}{x_{1}} \\ {x_{2}} \\ {x_{3}} \\ {x_{4}} \\ {x_{5}}\end{array}\right]=\left[ \begin{array}{c}{100} \\ {200} \\ {200} \\ {200} \\ {200} \\ {100}\end{array}\right]
+\end{equation}
+
+\subsubsection{程序代码}
+\lstinputlisting[
+    style       =   Python,
+    %caption     =   {\bf ff.py},
+    label       =   {get_root.py}
+]{../../src/3_线性方程组的直接解法/Seize_Method.py}
 
 \section{实验体会}
 
-通过编程，复习了简单迭代法及其改进。明白了二分法与埃特金法的斯坦弗森过程之间的区别。
+在此次实验中，集中利用了MATLAB与Python 3进行程序设计。
+
+主程序是采用Python 3进行编写，验算求解是利用MATLAB进行。当写的程序足够多之后，就会发现，真正重要的东西是数学思维，编程完全决定于数学思维的深度。如果一味追求编程的快感，很容易在这虚无的成就感中迷失自己。所以编程不如不编，能透彻理解数学思维已经很不容易了。
+
+但是从另一个角度看，编程对数学思维又有很强的检验作用，尽管在数学思维之外，高技巧度编程又是另外广阔的一片天地。通过适度的编程，选择一类题目的典型例子进行编程，就可以在一个程序的设计、实现时间里，考验自己的一批数学思维的掌握牢固程度。
+
+MATLAB的强大之处不在于它编程方便，而是两方面：友好的交互式控制台，众多高质量的程序包。正是这两点，使得MATLAB在工业中得到广泛的应用。但是在数值计算的学习上，利用Python或许是更好的选择。Python的数值计算依赖于数组，所以对于循环的考验非常高。Python不像MATLAB的基本运算都是基于矩阵那样地方便，而正是这不方便这一点，使得Python这个看起来更加拙劣的工具更适合新手。
+
+除了工具，更重要的一点是编程。这四个程序的编写基本上没有遇到困难。如果说在理论方面已经理解得足够透彻，那么在编程上不应该存在任何思路困难。数值计算以及数学建模中的程序，很大程度上都是数学语言的直接翻译。这一点与DSA设计有相当大的差别。现在出现的一个问题是，编程趋向IDD模式，即IDE Driven，没有了编译器就不会单步调试，进而很难发现哪里出了差错。这不能说是思路理解得不到位，因为如果单纯是这个原因，那么在纸上演算就会遇到问题。但是很显然不是这样。以后的一个突破，可能就在这里——直接用文本编辑器进行代码书写，然后用IDE进行检验。
+
+最后需要说明，因为有很多东西没有或者不能调用，所以这四个程序基本上是为题目量身定做。虽然面向对象设计里的几个成员函数具有通用性，但是总得来看，一些全局函数还是缺乏相应的判断。当然，如果不能运行，就从侧面说明输入的矩阵不合格。所以，这四个程序的通用性有待进一步挖掘，数据与程序能彻底分开，是判断程序通用性强弱的主要依据之一。
+
 
 \section{参考文献}
 

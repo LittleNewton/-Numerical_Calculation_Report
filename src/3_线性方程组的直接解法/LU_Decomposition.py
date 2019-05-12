@@ -1,4 +1,4 @@
-# filename: 3.3 LU Decomposition.py
+# filename: LU_Decomposition.py
 
 class Matrix:
     """Abatrct class representing a Matrix.
