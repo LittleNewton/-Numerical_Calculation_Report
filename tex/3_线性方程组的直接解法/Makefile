@@ -1,11 +1,11 @@
-PROJECT_NAME = 3_线性方程组的直接解法
+STUDENT_NAME = 20151910042-刘鹏
+PROJECT_NAME = ${STUDENT_NAME}-3-线性方程组的直接解法
 
 main.pdf : *.tex Makefile ../style/*.tex
 	xelatex --synctex=-1 main.tex
-	#biber main
-	#bibtex chapter/*.aux
-	#xelatex --synctex=-1 main.tex
-	#xelatex --synctex=-1 main.tex
+	biber main
+	xelatex --synctex=-1 main.tex
+	xelatex --synctex=-1 main.tex
 	mv main.pdf ../../build/${PROJECT_NAME}.pdf
 	make clean
 

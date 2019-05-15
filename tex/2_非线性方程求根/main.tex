@@ -1,51 +1,13 @@
-\documentclass[UTF8, a4paper, zihao=-4, bibliography=totoc]{ctexart}
-\usepackage{color}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{mathtools}
-\usepackage[colorlinks=true, pdfstartview=FitH, linkcolor=black, anchorcolor=violet, citecolor=magenta]{hyperref}
-\usepackage{graphicx}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage{titletoc}
-\usepackage{bm}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{mathrsfs}
-\usepackage{multirow}
-\usepackage{amsthm}
-\usepackage{tabularx, booktabs}
-\usepackage{longtable}
-\usepackage{supertabular}
-\usepackage{array, makecell}
-\usepackage{graphicx}
-\usepackage{epstopdf}
-\usepackage{float}
-\usepackage{subfigure}
-\usepackage{geometry}
-\usepackage{ctex}
-\usepackage{listings}
-\usepackage[nottoc,numbib]{tocbibind}
-\usepackage[backend=biber, style=gb7714-2015]{biblatex}
-\addbibresource[location=local]{reference.bib}
-\usepackage{pythonhighlight}
-\usepackage{caption}
-\usepackage{booktabs}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage[toc]{appendix}
-\usepackage{xhfill}
-
+\input{../style/dependency}
 \input{../style/ctex_setting}
 \input{../style/lstset}
 \input{../style/env_def}
 \input{../style/algorithm_style}
+\input{../style/geometry}
 
-\newgeometry{
-    left=2.5cm,
-    right=2.0cm,
-    top=2.5cm,
-    bottom=2.5cm
-}
+\newcommand{\ThisProjectTitle}{非线性方程求根}
+\newcommand{\ThisDate}{2017-12-25}
+\newcommand{\ThisNo}{No.6}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,74 +15,34 @@
 
 \begin{document}
 
-\newcommand{\CourseName}{{\bf 课程名称：}}
-\newcommand{\Grade}{{\bf 年级：}}
-\newcommand{\Score}{{\bf 上机实践成绩：}}
-\newcommand{\Director}{{\bf 指导教师：}}
-\newcommand{\StudentName}{{\bf 学生姓名：}}
-\newcommand{\ProjectTitle}{{\bf 上机实践名称：}}
-\newcommand{\StudentID}{{\bf 学号：}}
-\newcommand{\Date}{{\bf 上机实践日期：}}
-\newcommand{\No}{{\bf 上机实践编号：}}
-\newcommand{\GroupNum}{{\bf 组号：}}
-\newcommand{\LastEditTine}{{\bf 最后修改时间：}}
-
-\newcommand{\ThisCourseName}{数值计算实验}
-\newcommand{\MyGrade}{2015级}
-\newcommand{\MyScore}{100}
-\newcommand{\MyDirector}{朱娟萍}
-\newcommand{\MyName}{刘鹏}
-\newcommand{\ThisProjectTitle}{非线性方程求根}
-\newcommand{\MyID}{20151910042}
-\newcommand{\ThisDate}{2017-12-25}
-\newcommand{\ThisNo}{No.6}
-\newcommand{\MyGroupNum}{1}
-\newcommand{\MyLastEditTine}{\today}
-
-\begin{center}
-    {\zihao{3} \bf 云南大学数学与统计学院}\\
-    {\zihao{3} \bf 上机实践报告}
-\end{center}
-
-\begin{table}[h]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{|l|l|l|}
-        \hline
-            \CourseName \ThisCourseName     & \Grade \MyGrade       & \Score                        \\ \hline
-            \Director \MyDirector           & \StudentName \MyName  &                               \\ \hline
-            \ProjectTitle \ThisProjectTitle & \StudentID \MyID      & \Date \ThisDate               \\ \hline
-            \No \ThisNo                     & \GroupNum             & \LastEditTine \MyLastEditTine \\ \hline
-        \end{tabular}
-    }
-\end{table}
+\input{../style/header_table}
 
 \section{实验目的}
-
-1. 通过对所学的非线性方程求根法的理论方法进行编程，提升程序编写水平；
-
-2. 通过对理论方法的编程实验，进一步掌握理论方法的每一个细节；
+\begin{enumerate}[leftmargin=1.4cm, itemsep=-0.5mm]
+    \item 通过对所学的非线性方程求根法的理论方法进行编程，提升程序编写水平；
+    \item 通过对理论方法的编程实验，进一步掌握理论方法的每一个细节；
+\end{enumerate}
 
 \section{实验内容}
-
-1. 编制求线性方程根的程序；
-
-2. 编程实现用埃特金法求方程的根。
+\begin{enumerate}[leftmargin=1.4cm, itemsep=-0.5mm]
+    \item 编制求线性方程根的程序；
+    \item 编程实现用埃特金法求方程的根。
+\end{enumerate}
 
 \section{实验平台}
 
 macOS
 
-Python 3.7.3；
+Python 3.7.3
 
-MATLAB R2017b win64；
+MATLAB R2019a
 
 \section{实验记录与实验结果分析}
 
 \subsection{第1题}
 \begin{quote}
     {\kaishu
-        用二分法求方程$x^2-x-1=0$的正根，要求精确到小数点后一位。[1]
+        用二分法求方程$x^2-x-1=0$的正根，要求精确到小数点后一位。\cite{RN731}
     }
 \end{quote}
 
@@ -142,6 +64,12 @@ MATLAB R2017b win64；
 
 \subsubsection{运行结果}
 
+\begin{lstlisting}[style = bash]
+$ python3 get_root.py 
+root.binary(x - tan(x) == 0) is  4.493414306640625 iterations deepth: 14
+root.aitken(x - tan(x) == 0) is  4.493409457909101 iterations deepth: 6
+\end{lstlisting}
+
 \subsubsection{结果分析}
 
 由于二分法与埃特金方法的函数并不是一样的，前者是原函数，后者是迭代函数，所以很难写一个通用算法解决这个迭代函数的生成问题。所以这个class意义不是很大，不过可以通过对属性进行赋值，重复进行计算，也算有一定的灵活性。
@@ -152,6 +80,6 @@ MATLAB R2017b win64；
 
 \section{参考文献}
 
-[1] 金一庆, 陈越, 王冬梅. 数值方法[M]. 北京: 机械工业出版社; 2000.2.
+\printbibliography[heading=none]
 
 \end{document}

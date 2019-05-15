@@ -4,12 +4,11 @@
 \definecolor{mylilas}{RGB}{170,55,241}
 
 \lstset{
-    basicstyle          =   \sffamily,
+    basicstyle      =   \zihao{-5}\ttfamily,
     keywordstyle        =   \bfseries,
     commentstyle        =   \rmfamily\itshape,
     stringstyle         =   \ttfamily,
     flexiblecolumns,
-    numbers             =   left,
     showspaces          =   false,
     numberstyle         =   \zihao{-5}\ttfamily,
     showstringspaces    =   false,
@@ -20,6 +19,7 @@
 \lstdefinestyle{Python}{
     language        =   Python,
     basicstyle      =   \zihao{-5}\ttfamily,
+    numbers         =   left,
     numberstyle     =   \zihao{-5}\ttfamily,
     keywordstyle    =   \color{blue},
     keywordstyle    =   [2] \color{teal}, % just to check that it works
@@ -33,10 +33,37 @@
 \lstdefinestyle{MATLAB}{
     language        =   Matlab,
     basicstyle      =   \zihao{-5}\ttfamily,
+    numbers         =   left,
     numberstyle     =   \zihao{-5}\ttfamily,
     keywordstyle    =   \color{blue},
     keywordstyle    =   [2] \color{teal}, % just to check that it works
     stringstyle     =   \color{mylilas},
+    commentstyle    =   \color{mygreen}\ttfamily,
+    breaklines      =   true,
+    columns         =   fixed,
+    basewidth       =   0.5em,
+}
+
+\lstdefinestyle{bash}{
+    language        =   bash,
+    basicstyle      =   \zihao{-5}\ttfamily,
+    keywordstyle    =   \color{blue},
+    keywordstyle    =   [2] \color{teal}, % just to check that it works
+    stringstyle     =   \color{mylilas},
+    commentstyle    =   \color{mygreen}\ttfamily,
+    breaklines      =   true,
+    columns         =   fixed,
+    basewidth       =   0.5em,
+}
+
+\lstdefinestyle{C}{
+    language        =   C,
+    basicstyle      =   \zihao{-5}\ttfamily,
+    numbers         =   left,
+    numberstyle     =   \zihao{-5}\ttfamily,
+    keywordstyle    =   \color{blue},
+    keywordstyle    =   [2] \color{teal}, % just to check that it works
+    stringstyle     =   \color{magenta},
     commentstyle    =   \color{mygreen}\ttfamily,
     breaklines      =   true,
     columns         =   fixed,

@@ -1,53 +1,9 @@
-\documentclass[UTF8, a4paper, zihao=-4, bibliography=totoc]{ctexart}
-\usepackage{color}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{mathtools}
-\usepackage[colorlinks=true, pdfstartview=FitH, linkcolor=black, anchorcolor=violet, citecolor=magenta]{hyperref}
-\usepackage{graphicx}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage{titletoc}
-\usepackage{bm}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{mathrsfs}
-\usepackage{multirow}
-\usepackage{amsthm}
-\usepackage{tabularx, booktabs}
-\usepackage{longtable}
-\usepackage{supertabular}
-\usepackage{array, makecell}
-\usepackage{graphicx}
-\usepackage{epstopdf}
-\usepackage{float}
-\usepackage{subfigure}
-\usepackage{geometry}
-\usepackage{ctex}
-\usepackage{abstract}
-\usepackage{listings}
-\usepackage{etoc}
-\usepackage[nottoc,numbib]{tocbibind}
-\usepackage[backend=biber, style=gb7714-2015]{biblatex}
-\addbibresource[location=local]{reference.bib}
-\usepackage{pythonhighlight}
-\usepackage{caption}
-\usepackage{booktabs}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage[toc]{appendix}
-\usepackage{xhfill}
-
+\input{../style/dependency}
 \input{../style/ctex_setting}
 \input{../style/lstset}
 \input{../style/env_def}
 \input{../style/algorithm_style}
-
-\newgeometry{
-    left=2.5cm,
-    right=2.0cm,
-    top=2.5cm,
-    bottom=2.5cm
-}
+\input{../style/geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,49 +11,11 @@
 
 \begin{document}
 
-\newcommand{\CourseName}{{\bf 课程名称：}}
-\newcommand{\Grade}{{\bf 年级：}}
-\newcommand{\Score}{{\bf 上机实践成绩：}}
-\newcommand{\Director}{{\bf 指导教师：}}
-\newcommand{\StudentName}{{\bf 学生姓名：}}
-\newcommand{\ProjectTitle}{{\bf 上机实践名称：}}
-\newcommand{\StudentID}{{\bf 学号：}}
-\newcommand{\Date}{{\bf 上机实践日期：}}
-\newcommand{\No}{{\bf 上机实践编号：}}
-\newcommand{\GroupNum}{{\bf 组号：}}
-\newcommand{\LastEditTine}{{\bf 最后修改时间：}}
-
-\newcommand{\ThisCourseName}{数值计算实验}
-\newcommand{\MyGrade}{2015级}
-\newcommand{\MyScore}{100}
-\newcommand{\MyDirector}{朱娟萍}
-\newcommand{\MyName}{刘鹏}
 \newcommand{\ThisProjectTitle}{线性方程组的直接解法}
-\newcommand{\MyID}{20151910042}
 \newcommand{\ThisDate}{2017-10-16}
 \newcommand{\ThisNo}{No.1}
-\newcommand{\MyGroupNum}{1}
-\newcommand{\MyLastEditTine}{\today}
 
-\newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
-
-\begin{center}
-    {\zihao{3} \bf 云南大学数学与统计学院}\\
-    {\zihao{3} \bf 上机实践报告}
-\end{center}
-
-\begin{table}[h]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{|l|l|l|}
-        \hline
-            \CourseName \ThisCourseName     & \Grade \MyGrade       & \Score                        \\ \hline
-            \Director \MyDirector           & \StudentName \MyName  &                               \\ \hline
-            \ProjectTitle \ThisProjectTitle & \StudentID \MyID      & \Date \ThisDate               \\ \hline
-            \No \ThisNo                     & \GroupNum             & \LastEditTine \MyLastEditTine \\ \hline
-        \end{tabular}
-    }
-\end{table}
+\input{../style/header_table}
 
 \section{实验目的}
 
@@ -227,8 +145,6 @@ Matrix的实例A是一个三行四列的矩阵，其中最后一列是方程组�
     \end{equation}
 \end{quote}
 
-
-
 \subsubsection{程序代码}
 \lstinputlisting[
     style       =   Python,
@@ -246,12 +162,12 @@ Matrix的实例A是一个三行四列的矩阵，其中最后一列是方程组�
 
 MATLAB的强大之处不在于它编程方便，而是两方面：友好的交互式控制台，众多高质量的程序包。正是这两点，使得MATLAB在工业中得到广泛的应用。但是在数值计算的学习上，利用Python或许是更好的选择。Python的数值计算依赖于数组，所以对于循环的考验非常高。Python不像MATLAB的基本运算都是基于矩阵那样地方便，而正是这不方便这一点，使得Python这个看起来更加拙劣的工具更适合新手。
 
-除了工具，更重要的一点是编程。这四个程序的编写基本上没有遇到困难。如果说在理论方面已经理解得足够透彻，那么在编程上不应该存在任何思路困难。数值计算以及数学建模中的程序，很大程度上都是数学语言的直接翻译。这一点与DSA设计有相当大的差别。现在出现的一个问题是，编程趋向IDD模式，即IDE Driven，没有了编译器就不会单步调试，进而很难发现哪里出了差错。这不能说是思路理解得不到位，因为如果单纯是这个原因，那么在纸上演算就会遇到问题。但是很显然不是这样。以后的一个突破，可能就在这里——直接用文本编辑器进行代码书写，然后用IDE进行检验。
+除了工具，更重要的一点是编程。这四个程序的编写基本上没有遇到困难。如果说在理论方面已经理解得足够透彻，那么在编程上不应该存在任何思路困难。数值计算以及数学建模中的程序，很大程度上都是数学语言的直接翻译。这一点与DSA设计有相当大的差别。现在出现的一个问题是，编程趋向IDD模式，即IDE Driven，没有了编译器就不会单步调试，进而很难发现哪里出了差错。这不能说是思路理解得不到位，因为如果单纯是这个原因，那么在纸上演算就会遇到问题。但是很显然不是这样。以后的一个突破，可能就在这里——直接用文本编辑器进行代码书写，然后用IDE进行检验。\cite{RN686}
 
 最后需要说明，因为有很多东西没有或者不能调用，所以这四个程序基本上是为题目量身定做。虽然面向对象设计里的几个成员函数具有通用性，但是总得来看，一些全局函数还是缺乏相应的判断。当然，如果不能运行，就从侧面说明输入的矩阵不合格。所以，这四个程序的通用性有待进一步挖掘，数据与程序能彻底分开，是判断程序通用性强弱的主要依据之一。
 
 \section{参考文献}
 
-[1] 金一庆, 陈越, 王冬梅. 数值方法[M]. 北京: 机械工业出版社; 2000.2.
+\printbibliography[heading=none]
 
 \end{document}

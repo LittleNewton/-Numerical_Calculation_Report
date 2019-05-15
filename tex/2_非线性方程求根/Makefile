@@ -1,12 +1,13 @@
-PROJECT_NAME = 2_非线性方程求根
+STUDENT_NAME = 20151910042-刘鹏
+PROJECT_NAME = ${STUDENT_NAME}-2-非线性方程求根
 
 main.pdf : *.tex Makefile ../style/*.tex
 	xelatex --synctex=-1 main.tex
-	#biber main
-	#bibtex chapter/*.aux
-	#xelatex --synctex=-1 main.tex
-	#xelatex --synctex=-1 main.tex
+	biber main
+	xelatex --synctex=-1 main.tex
+	xelatex --synctex=-1 main.tex
 	mv main.pdf ../../build/${PROJECT_NAME}.pdf
+	make clean
 
 clean:
 	-rm *.aux
