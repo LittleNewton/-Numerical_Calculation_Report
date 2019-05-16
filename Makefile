@@ -27,6 +27,7 @@ generate : ${ALL_OBJ}
 	-make task2
 	-make task3
 	-make task4
+	-make task6
 
 clean:
 	cd ${TASK2} && make clean

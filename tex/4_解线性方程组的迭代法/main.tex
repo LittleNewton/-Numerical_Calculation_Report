@@ -6,7 +6,7 @@
 \input{../style/geometry}
 
 \newcommand{\ThisProjectTitle}{解线性方程组的迭代法}
-\newcommand{\ThisDate}{2017-11-28}
+\newcommand{\ThisDate}{2017年11月28日}
 \newcommand{\ThisNo}{No.2}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,29 +33,23 @@
     \item 编程实现用SOR方法求线性方程组的数值解。
 \end{enumerate}
 
-\section{实验平台}
-
-macOS
-
-Python 3.7.3
-
-MATLAB R2019a
+\input{../style/platform.tex}
 
 \section{实验记录与实验结果分析}
 
 \subsection{第1题}
 \begin{quote}
     {\kaishu
-    对下列矩阵计算$\|\cdot\|_{\infty}$，$\|\cdot\|_{1}$，$\|\cdot\|_{2}$：
-    （1）\begin{equation}
-            \mathbf{A}=\left[ \begin{array}{rr}{1} & {-1} \\ {2} & {1}\end{array}\right]
-        \end{equation}
-    (2) \begin{equation}
-            \mathbf{B}=\left[ \begin{array}{rr}{10} & {15} \\ {0} & {1}\end{array}\right]
-        \end{equation}
-    (3) \begin{equation}
-            \mathbf{C}=\left[ \begin{array}{rr}{0.6} & {-0.5} \\ {-0.1} & {0.3}\end{array}\right]
-        \end{equation}
+        对下列矩阵计算$\|\cdot\|_{\infty}$，$\|\cdot\|_{1}$，$\|\cdot\|_{2}$：
+        （1）\begin{equation}
+                \mathbf{A}=\left[ \begin{array}{rr}{1} & {-1} \\ {2} & {1}\end{array}\right]
+            \end{equation}
+        (2) \begin{equation}
+                \mathbf{B}=\left[ \begin{array}{rr}{10} & {15} \\ {0} & {1}\end{array}\right]
+            \end{equation}
+        (3) \begin{equation}
+                \mathbf{C}=\left[ \begin{array}{rr}{0.6} & {-0.5} \\ {-0.1} & {0.3}\end{array}\right]
+            \end{equation}
     }
 \end{quote}
 
@@ -165,15 +159,15 @@ $ python3 4_3_Gauss–Seidel_Iteration_Method.py
 
 \subsubsection{运行结果}
 
-\begin{figure}[H]   %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{../../img/04/compare.pdf}
-    \caption{分组密码}
-    \label{Fig:分组密码}
+    \caption{方法对比}
+    \label{Fig:方法对比}
 \end{figure}
 
 \subsubsection{结果分析}
-可以发现，在相同的迭代次数下，高斯-赛德尔方法的精度更高。
+本段代码，是构建了一个简单的封装，可以将已知点作为参数输入，然后输入作为第三个参数的要估计的点的横坐标列表，最终返回一个列表，它储存着根据相应方法得到的插值数值
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
