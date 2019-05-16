@@ -59,14 +59,6 @@ MATLAB R2017b win64；
     \end{equation}
 \end{quote}
 
-\subsubsection{程序代码}
-
-\lstinputlisting[
-    style       =   Python,
-    %caption     =   {\bf ff.py},
-    label       =   {get_root.py}
-]{../../src/3_线性方程组的直接解法/ColumnPivotMethod.py}
-
 \subsubsection{运行结果}
 
 \subsubsection{结果分析}
@@ -96,13 +88,6 @@ Matrix的实例A是一个三行四列的矩阵，其中最后一列是方程组�
     \end{equation}
 \end{quote}
 
-\subsubsection{程序代码}
-\lstinputlisting[
-    style       =   Python,
-    %caption     =   {\bf ff.py},
-    label       =   {get_root.py}
-]{../../src/3_线性方程组的直接解法/CompletePivotMethod.py}
-
 \subsubsection{代码分析}
 此段代码是在Code Box 1的基础上略微修改而得的，由于全主元的位置没有固定性，所以要把每一次找到的全主元的行列坐标都存储下来。其余部分与Code Box 1相同。
 
@@ -117,13 +102,6 @@ Matrix的实例A是一个三行四列的矩阵，其中最后一列是方程组�
         \end{array}\right] \cdot \left[ \begin{array}{c}{x_{1}} \\ {x_{2}} \\ {x_{3}} \\ {x_{4}}\end{array}\right]=\left[ \begin{array}{r}{15} \\ {-15} \\ {6} \\ {2}\end{array}\right]
     \end{equation}
 \end{quote}
-
-\subsubsection{程序代码}
-\lstinputlisting[
-    style       =   Python,
-    %caption     =   {\bf ff.py},
-    label       =   {get_root.py}
-]{../../src/3_线性方程组的直接解法/LU_Decomposition.py}
 
 \subsubsection{代码分析}
 
@@ -146,11 +124,7 @@ Matrix的实例A是一个三行四列的矩阵，其中最后一列是方程组�
 \end{quote}
 
 \subsubsection{程序代码}
-\lstinputlisting[
-    style       =   Python,
-    %caption     =   {\bf ff.py},
-    label       =   {get_root.py}
-]{../../src/3_线性方程组的直接解法/Seize_Method.py}
+
 
 \section{实验体会}
 
@@ -170,4 +144,33 @@ MATLAB的强大之处不在于它编程方便，而是两方面：友好的交�
 
 \printbibliography[heading=none]
 
+\section{程序代码}
+
+\subsection{列主元消元法}
+\lstinputlisting[
+    style       =   Python,
+    %caption     =   {\bf ff.py},
+    label       =   {get_root.py}
+]{../../src/3_线性方程组的直接解法/ColumnPivotMethod.py}
+
+\subsection{全主元消元法}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf CompletePivotMethod.py},
+    label       =   {CompletePivotMethod.py}
+]{../../src/3_线性方程组的直接解法/CompletePivotMethod.py}
+
+\subsection{LU分解}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf LU\_Decomposition.py},
+    label       =   {LU_Decomposition.py}
+]{../../src/3_线性方程组的直接解法/LU_Decomposition.py}
+
+\subsection{追赶法}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf Seize\_Method.py},
+    label       =   {Seize_Method.py}
+]{../../src/3_线性方程组的直接解法/Seize_Method.py}
 \end{document}

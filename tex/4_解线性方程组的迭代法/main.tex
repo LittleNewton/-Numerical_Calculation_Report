@@ -58,15 +58,8 @@ MATLAB R2019a
         \end{equation}
     }
 \end{quote}
-在一般的无大型模块导入的情况下，对于行范数与列范数而言，求解都是比较简单的，但是对于谱范数却并不是很容易，首先一点，难以做到的是特征方程的求解，这个多项式方程，当阶数特别大的时候几乎不能通过公式法求解，而且写一个字符串识别程序也不见得容易。如果能写成，那么在无公式的情况下，用数值方法求解也是不容易的，数值方法的计算量本身就很大，而且得到的一般不是精确解。所以综合来看，利用特征方程求解的这一做法基本放弃。这里直接调用库函数。
 
-\subsubsection{程序代码}
-
-\lstinputlisting[
-    style       =   Python,
-    %caption     =   {\bf ff.py},
-    label       =   {get_root.py}
-]{../../src/4_解线性方程组的迭代法/4_1_Normal_Value.py}
+在一般的无大型模块导入的情况下，对于行范数与列范数而言，求解都是比较简单的，但是对于谱范数却并不是很容易，首先一点，难以做到的是特征方程的求解，这个多项式方程，当阶数特别大的时候几乎不能通过公式法求解，而且写一个字符串识别程序也不见得容易。如果能写成，那么在无公式的情况下，用数值方法求解也是不容易的，数值方法的计算量本身就很大，而且得到的一般不是精确解。所以综合来看，利用特征方程求解的这一做法基本放弃。这里直接调用库函数。代码参见\ref{4_1_Normal_Value.py}
 
 \subsubsection{运行结果}
 
@@ -95,18 +88,18 @@ $ python3 4_1_Normal_Value.py
 
 在排序过程中，自建了一个快速排序算法，其中每次的比较数值是三平均数，稳定性比较可靠。无论是随机序列还是等差序列，都可以比较好地进行递归。
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{第2题}
 \begin{quote}
-    设$\mathbf{A}=\left[ \begin{array}{rr}{100} & {99} \\ {99} & {98}\end{array}\right]$，计算$\mathbf{A}$的条件数$\mathrm{cond}(\mathbf{A})_{\infty}$及$\mathrm{cond}(\mathbf{A})_{2}$
+    {\kaishu
+        设$\mathbf{A}=\left[ \begin{array}{rr}{100} & {99} \\ {99} & {98}\end{array}\right]$，计算$\mathbf{A}$的条件数$\mathrm{cond}(\mathbf{A})_{\infty}$及$\mathrm{cond}(\mathbf{A})_{2}$
+    }
 \end{quote}
 
-\subsubsection{程序代码}
-
-\lstinputlisting[
-    style       =   Python,
-    %caption     =   {\bf ff.py},
-    label       =   {get_root.py}
-]{../../src/4_解线性方程组的迭代法/4_2_Conditional_Value.py}
+程序代码参见\ref{4_2_Conditional_Value.py}
 
 \subsubsection{运行结果}
 
@@ -121,21 +114,23 @@ $ python3 4_2_Conditional_Value.py
 \subsubsection{结果分析}
 条件数是矩阵的范数与矩阵的转置的范数的乘积。
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{第3题}
 \begin{quote}
-    用高斯-赛德尔迭代法解下列线性方程组，要求当$\left\|x^{(K+1)}-x^{(K)}\right\| \leq 10^{-5}$时迭代终止。
-    \begin{equation}
-    \left[ \begin{array}{rrrrrrr}{4} & {-1} & {0} & {-1} & {0} & {0} \\ {-1} & {4} & {-1} & {0} & {-1} & {0} \\ {0} & {-1} & {4} & {0} & {0} & {-1} \\ {-1} & {0} & {0} & {4} & {-1} & {0} \\ {0} & {-1} & {0} & {-1} & {4} & {-1} \\ {0} & {0} & {-1} & {0} & {-1} & {4}\end{array}\right] \cdot \left[ \begin{array}{c}{x_{1}} \\ {x_{2}} \\ {x_{3}} \\ {x_{4}} \\ {x_{5}} \\ {x_{6}}\end{array}\right]=\left[ \begin{array}{r}{0} \\ {5} \\ {0} \\ {6} \\ {-2} \\ {6}\end{array}\right]
-    \end{equation}
+    {\kaishu
+        用高斯-赛德尔迭代法解下列线性方程组，要求当$\left\|x^{(K+1)}-x^{(K)}\right\| \leq 10^{-5}$时迭代终止。
+        \begin{equation}
+            \left[ \begin{array}{rrrrrrr}
+                {4} & {-1} & {0} & {-1} & {0} & {0} \\ {-1} & {4} & {-1} & {0} & {-1} & {0} \\ {0} & {-1} & {4} & {0} & {0} & {-1} \\ {-1} & {0} & {0} & {4} & {-1} & {0} \\ {0} & {-1} & {0} & {-1} & {4} & {-1} \\ {0} & {0} & {-1} & {0} & {-1} & {4}\end{array}\right] \cdot \left[ \begin{array}{c}{x_{1}} \\ {x_{2}} \\ {x_{3}} \\ {x_{4}} \\ {x_{5}} \\ {x_{6}}\end{array}\right]=\left[ \begin{array}{r}{0} \\ {5} \\ {0} \\ {6} \\ {-2} \\ {6}
+            \end{array}\right]
+        \end{equation}
+    }
 \end{quote}
 
-\subsubsection{程序代码}
-
-\lstinputlisting[
-    style       =   Python,
-    %caption     =   {\bf ff.py},
-    label       =   {get_root.py}
-]{../../src/4_解线性方程组的迭代法/4_3_Gauss–Seidel_Iteration_Method.py}
+程序代码参见\ref{4_3_Gauss–Seidel_Iteration_Method.py}。
 
 \subsubsection{运行结果}
 
@@ -152,21 +147,21 @@ $ python3 4_3_Gauss–Seidel_Iteration_Method.py
 \subsubsection{结果分析}
 高斯-塞德尔方法，无非是在计算过程中，使实时的结果及时反馈，从而提高迭代效率。
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{第4题}
 \begin{quote}
-    用雅可比迭代法、高斯-赛德尔迭代法解下列线性方程组，比较在不同迭代深度下，两种迭代法的差异。
-    \begin{equation}
-    \left[ \begin{array}{rrrrrr}{4} & {-1} & {0} & {-1} & {0} & {0} \\ {-1} & {4} & {-1} & {0} & {-1} & {0} \\ {0} & {-1} & {4} & {0} & {0} & {-1} \\ {-1} & {0} & {0} & {4} & {-1} & {0} \\ {0} & {-1} & {0} & {-1} & {4} & {-1} \\ {0} & {0} & {-1} & {0} & {-1} & {4}\end{array}\right] \cdot \left[ \begin{array}{c}{x_{1}} \\ {x_{2}} \\ {x_{3}} \\ {x_{3}} \\ {x_{5}} \\ {x_{6}}\end{array}\right]=\left[ \begin{array}{r}{0} \\ {5} \\ {0} \\ {6} \\ {-2} \\ {6}\end{array}\right]
-    \end{equation}
+    {\kaishu
+        用雅可比迭代法、高斯-赛德尔迭代法解下列线性方程组，比较在不同迭代深度下，两种迭代法的差异。
+        \begin{equation}
+            \left[ \begin{array}{rrrrrr}{4} & {-1} & {0} & {-1} & {0} & {0} \\ {-1} & {4} & {-1} & {0} & {-1} & {0} \\ {0} & {-1} & {4} & {0} & {0} & {-1} \\ {-1} & {0} & {0} & {4} & {-1} & {0} \\ {0} & {-1} & {0} & {-1} & {4} & {-1} \\ {0} & {0} & {-1} & {0} & {-1} & {4}\end{array}\right] \cdot \left[ \begin{array}{c}{x_{1}} \\ {x_{2}} \\ {x_{3}} \\ {x_{3}} \\ {x_{5}} \\ {x_{6}}\end{array}\right]=\left[ \begin{array}{r}{0} \\ {5} \\ {0} \\ {6} \\ {-2} \\ {6}\end{array}\right]
+        \end{equation}
+    }
 \end{quote}
 
-\subsubsection{程序代码}
-
-\lstinputlisting[
-    style       =   Python,
-    %caption     =   {\bf ff.py},
-    label       =   {get_root.py}
-]{../../src/4_解线性方程组的迭代法/4_4_Plot.py}
+程序代码参见\ref{4_4_Plot.py}
 
 \subsubsection{运行结果}
 
@@ -180,6 +175,10 @@ $ python3 4_3_Gauss–Seidel_Iteration_Method.py
 \subsubsection{结果分析}
 可以发现，在相同的迭代次数下，高斯-赛德尔方法的精度更高。
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{第5题}
 \begin{quote}
     {\kaishu
@@ -187,16 +186,11 @@ $ python3 4_3_Gauss–Seidel_Iteration_Method.py
         \begin{equation}
             \left\{\begin{array}{r}{4 x_{1}-x_{2}=1} \\ {-x_{1}+4 x_{2}-x_{3}=4} \\ {-x_{2}+4 x_{3}=-3}\end{array}\right.
         \end{equation}
-    }
     分别取$w=1.03$，$w=1$，$w=1.1$。要求当$\left\|x^{(K)}-x^{(K-1)}\right\|<5 \times 10^{-6}$时迭代终止，并对每个$w$值确定迭代次数（初值$x^{(0)}=(0,0,0)^{\mathrm{T}}$）
+    }
 \end{quote}
-\subsubsection{程序代码}
 
-\lstinputlisting[
-    style       =   Python,
-    %caption     =   {\bf ff.py},
-    label       =   {get_root.py}
-]{../../src/4_解线性方程组的迭代法/4_5_Relaxation_Method.py}
+程序代码参见\ref{4_5_Relaxation_Method.py}。
 
 \subsubsection{运行结果}
 
@@ -208,7 +202,10 @@ $ python3 4_3_Gauss–Seidel_Iteration_Method.py
 \end{figure}
 
 \subsubsection{结果分析}
-可以发现，在相同的迭代次数下，高斯-赛德尔方法的精度更高。
+本题代码行数比较多，而且涉及到了多个类的交互，所以对于参数的设计、传递，都有着巨大的考验，为了能够顺利构建出最终的图像，必须把class Matrix的对外行为设计得合乎规范，这样才能保证在调用矩阵的方法时毫无差错。可以从Code Analysis 1中看到，矩阵的所有方法，都没有改变该矩阵，换言之，这个类是不可更改的。这要求调用的时候，必须参考这一原则，写清楚赋值语句。而第二个类class Ma-trixIterMethod中，三个方法都列入了其中，虽然本题从实质上并没有调用雅可比方法，不过从先前的实验中可以看到，相同的精度下，它需要的迭代次数更多。
+
+本段代码的更改经历了很长的时间，最终发现只有深刻理解才能写出程序。超松弛迭代法有着很深刻的数学经验在里面，而且在这里，超松弛迭代也经历了一个从一般分量形式到矩阵形式的转换。从时间统筹角度看，采用MATLAB进行编程会更加方便，也可以留出更多的时间来进行理论学习。
+
 
 \section{实验体会}
 
@@ -218,9 +215,47 @@ $ python3 4_3_Gauss–Seidel_Iteration_Method.py
 
 如果有可能，在以后的实验报告中我将采用MATLAB进行编程。
 
-
 \section{参考文献}
 
 \printbibliography[heading=none]
+
+
+\section{代码附录}
+\label{附录}
+
+\subsubsection{矩阵范数}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf 4\_1\_Normal\_Value.py},
+    label       =   {4_1_Normal_Value.py}
+]{../../src/4_解线性方程组的迭代法/4_1_Normal_Value.py}
+
+\subsection{条件数}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf 4\_2\_Conditional\_Value.py},
+    label       =   {4_2_Conditional_Value.py}
+]{../../src/4_解线性方程组的迭代法/4_2_Conditional_Value.py}
+
+\subsection{高斯-塞德尔迭代法}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf 4\_3\_Gauss–Seidel\_Iteration\_Method.py},
+    label       =   {4_3_Gauss–Seidel_Iteration_Method.py}
+]{../../src/4_解线性方程组的迭代法/4_3_Gauss–Seidel_Iteration_Method.py}
+
+\subsection{作图}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf 4\_4\_Plot.py},
+    label       =   {4_4_Plot.py}
+]{../../src/4_解线性方程组的迭代法/4_4_Plot.py}
+
+\subsection{松弛法}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf 4\_5\_Relaxation\_Method.py},
+    label       =   {4_5_Relaxation_Method.py}
+]{../../src/4_解线性方程组的迭代法/4_5_Relaxation_Method.py}
 
 \end{document}
