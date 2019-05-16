@@ -1,0 +1,226 @@
+\input{../style/dependency}
+\input{../style/ctex_setting}
+\input{../style/lstset}
+\input{../style/env_def}
+\input{../style/algorithm_style}
+\input{../style/geometry}
+
+\newcommand{\ThisProjectTitle}{解线性方程组的迭代法}
+\newcommand{\ThisDate}{2017-11-28}
+\newcommand{\ThisNo}{No.2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{../style/header_table}
+
+\section{实验目的}
+\begin{enumerate}[leftmargin=1.4cm, itemsep=-0.5mm]
+    \item 通过对所学的线性方程组迭代求解的理论方法进行编程，提升程序编写水平；
+    \item 通过对理论方法的编程实验，进一步掌握理论方法的每一个细节；
+    \item 通过数值法求解，掌握判断循环终结的条件，理解矩阵范数的存在意义。
+    
+\end{enumerate}
+
+\section{实验内容}
+\begin{enumerate}[leftmargin=1.4cm, itemsep=-0.5mm]
+    \item 编制求矩阵的各种范数的程序；
+    \item 编程实现用雅可比迭代法求线性方程组的数值解；
+    \item 编程实现用高斯-塞德尔方法求线性方程组的数值解；
+    \item 编程实现用SOR方法求线性方程组的数值解。
+\end{enumerate}
+
+\section{实验平台}
+
+macOS
+
+Python 3.7.3
+
+MATLAB R2019a
+
+\section{实验记录与实验结果分析}
+
+\subsection{第1题}
+\begin{quote}
+    {\kaishu
+    对下列矩阵计算$\|\cdot\|_{\infty}$，$\|\cdot\|_{1}$，$\|\cdot\|_{2}$：
+    （1）\begin{equation}
+            \mathbf{A}=\left[ \begin{array}{rr}{1} & {-1} \\ {2} & {1}\end{array}\right]
+        \end{equation}
+    (2) \begin{equation}
+            \mathbf{B}=\left[ \begin{array}{rr}{10} & {15} \\ {0} & {1}\end{array}\right]
+        \end{equation}
+    (3) \begin{equation}
+            \mathbf{C}=\left[ \begin{array}{rr}{0.6} & {-0.5} \\ {-0.1} & {0.3}\end{array}\right]
+        \end{equation}
+    }
+\end{quote}
+在一般的无大型模块导入的情况下，对于行范数与列范数而言，求解都是比较简单的，但是对于谱范数却并不是很容易，首先一点，难以做到的是特征方程的求解，这个多项式方程，当阶数特别大的时候几乎不能通过公式法求解，而且写一个字符串识别程序也不见得容易。如果能写成，那么在无公式的情况下，用数值方法求解也是不容易的，数值方法的计算量本身就很大，而且得到的一般不是精确解。所以综合来看，利用特征方程求解的这一做法基本放弃。这里直接调用库函数。
+
+\subsubsection{程序代码}
+
+\lstinputlisting[
+    style       =   Python,
+    %caption     =   {\bf ff.py},
+    label       =   {get_root.py}
+]{../../src/4_解线性方程组的迭代法/4_1_Normal_Value.py}
+
+\subsubsection{运行结果}
+
+\begin{lstlisting}[style = bash]
+$ python3 4_1_Normal_Value.py 
++-----------------------+-----------------------+
+| infinity normal value |   3                   |
+| 1 normal value        |   3                   |
+| 2 normal value        |   2.302775637731995   |
++-----------------------+-----------------------+
+| infinity normal value |   25                  |
+| 1 normal value        |   16                  |
+| 2 normal value        |   18.046965461137088  |
++-----------------------+-----------------------+
+| infinity normal value |   0.19999999999999998 |
+| 1 normal value        |   0.5                 |
+| 2 normal value        |   0.8278530867147736  |
++-----------------------+-----------------------+
+\end{lstlisting}
+
+\subsubsection{结果分析}
+
+矩阵范数是迭代过程的核心，是判断迭代精度的标尺。
+
+行、列范数都比较简单，但是谱范数比较复杂，参考了书后的Jacobi方法之类的迭代法，也没有给出很详细的稳定算法，MATLAB的代码不开源，只能借用Python3的numpy进行计算，把numpy的方法嵌入到了GetNormalValue函数里面做了一个简单的封装。等到以后写出优质的稳定算法，再保留接口替换一下就可以了。
+
+在排序过程中，自建了一个快速排序算法，其中每次的比较数值是三平均数，稳定性比较可靠。无论是随机序列还是等差序列，都可以比较好地进行递归。
+
+\subsection{第2题}
+\begin{quote}
+    设$\mathbf{A}=\left[ \begin{array}{rr}{100} & {99} \\ {99} & {98}\end{array}\right]$，计算$\mathbf{A}$的条件数$\mathrm{cond}(\mathbf{A})_{\infty}$及$\mathrm{cond}(\mathbf{A})_{2}$
+\end{quote}
+
+\subsubsection{程序代码}
+
+\lstinputlisting[
+    style       =   Python,
+    %caption     =   {\bf ff.py},
+    label       =   {get_root.py}
+]{../../src/4_解线性方程组的迭代法/4_2_Conditional_Value.py}
+
+\subsubsection{运行结果}
+
+\begin{lstlisting}[style = bash]
+$ python3 4_2_Conditional_Value.py 
++-----------------------+-----------------------+
+| inf Conditional Value |   39601               |
+| 2 Conditional Value   |   39205.999974493694  |
++-----------------------+-----------------------+
+\end{lstlisting}
+
+\subsubsection{结果分析}
+条件数是矩阵的范数与矩阵的转置的范数的乘积。
+
+\subsection{第3题}
+\begin{quote}
+    用高斯-赛德尔迭代法解下列线性方程组，要求当$\left\|x^{(K+1)}-x^{(K)}\right\| \leq 10^{-5}$时迭代终止。
+    \begin{equation}
+    \left[ \begin{array}{rrrrrrr}{4} & {-1} & {0} & {-1} & {0} & {0} \\ {-1} & {4} & {-1} & {0} & {-1} & {0} \\ {0} & {-1} & {4} & {0} & {0} & {-1} \\ {-1} & {0} & {0} & {4} & {-1} & {0} \\ {0} & {-1} & {0} & {-1} & {4} & {-1} \\ {0} & {0} & {-1} & {0} & {-1} & {4}\end{array}\right] \cdot \left[ \begin{array}{c}{x_{1}} \\ {x_{2}} \\ {x_{3}} \\ {x_{4}} \\ {x_{5}} \\ {x_{6}}\end{array}\right]=\left[ \begin{array}{r}{0} \\ {5} \\ {0} \\ {6} \\ {-2} \\ {6}\end{array}\right]
+    \end{equation}
+\end{quote}
+
+\subsubsection{程序代码}
+
+\lstinputlisting[
+    style       =   Python,
+    %caption     =   {\bf ff.py},
+    label       =   {get_root.py}
+]{../../src/4_解线性方程组的迭代法/4_3_Gauss–Seidel_Iteration_Method.py}
+
+\subsubsection{运行结果}
+
+\begin{lstlisting}[style = bash]
+$ python3 4_3_Gauss–Seidel_Iteration_Method.py 
+[1.0]
+[2.0]
+[1.0]
+[2.0]
+[1.0]
+[2.0]
+\end{lstlisting}
+
+\subsubsection{结果分析}
+高斯-塞德尔方法，无非是在计算过程中，使实时的结果及时反馈，从而提高迭代效率。
+
+\subsection{第4题}
+\begin{quote}
+    用雅可比迭代法、高斯-赛德尔迭代法解下列线性方程组，比较在不同迭代深度下，两种迭代法的差异。
+    \begin{equation}
+    \left[ \begin{array}{rrrrrr}{4} & {-1} & {0} & {-1} & {0} & {0} \\ {-1} & {4} & {-1} & {0} & {-1} & {0} \\ {0} & {-1} & {4} & {0} & {0} & {-1} \\ {-1} & {0} & {0} & {4} & {-1} & {0} \\ {0} & {-1} & {0} & {-1} & {4} & {-1} \\ {0} & {0} & {-1} & {0} & {-1} & {4}\end{array}\right] \cdot \left[ \begin{array}{c}{x_{1}} \\ {x_{2}} \\ {x_{3}} \\ {x_{3}} \\ {x_{5}} \\ {x_{6}}\end{array}\right]=\left[ \begin{array}{r}{0} \\ {5} \\ {0} \\ {6} \\ {-2} \\ {6}\end{array}\right]
+    \end{equation}
+\end{quote}
+
+\subsubsection{程序代码}
+
+\lstinputlisting[
+    style       =   Python,
+    %caption     =   {\bf ff.py},
+    label       =   {get_root.py}
+]{../../src/4_解线性方程组的迭代法/4_4_Plot.py}
+
+\subsubsection{运行结果}
+
+\begin{figure}[H]   %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+    \centering
+    \includegraphics[width=0.7\textwidth]{../../img/04/compare.pdf}
+    \caption{分组密码}
+    \label{Fig:分组密码}
+\end{figure}
+
+\subsubsection{结果分析}
+可以发现，在相同的迭代次数下，高斯-赛德尔方法的精度更高。
+
+\subsection{第5题}
+\begin{quote}
+    {\kaishu
+        用松弛法解
+        \begin{equation}
+            \left\{\begin{array}{r}{4 x_{1}-x_{2}=1} \\ {-x_{1}+4 x_{2}-x_{3}=4} \\ {-x_{2}+4 x_{3}=-3}\end{array}\right.
+        \end{equation}
+    }
+    分别取$w=1.03$，$w=1$，$w=1.1$。要求当$\left\|x^{(K)}-x^{(K-1)}\right\|<5 \times 10^{-6}$时迭代终止，并对每个$w$值确定迭代次数（初值$x^{(0)}=(0,0,0)^{\mathrm{T}}$）
+\end{quote}
+\subsubsection{程序代码}
+
+\lstinputlisting[
+    style       =   Python,
+    %caption     =   {\bf ff.py},
+    label       =   {get_root.py}
+]{../../src/4_解线性方程组的迭代法/4_5_Relaxation_Method.py}
+
+\subsubsection{运行结果}
+
+\begin{figure}[H]   %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+    \centering
+    \includegraphics[width=0.7\textwidth]{../../img/04/relax.pdf}
+    \caption{Relaxation}
+    \label{Fig:relax}
+\end{figure}
+
+\subsubsection{结果分析}
+可以发现，在相同的迭代次数下，高斯-赛德尔方法的精度更高。
+
+\section{实验体会}
+
+从某种意义上讲，本次实验选错了语言，可能用基于矩阵的MATLAB会更加方便，而Python的numpy并不支持原生运算符，所以还是存在一定的局限性。
+
+本试验报告的所有数据都经过MATLAB的验证，俱无问题。
+
+如果有可能，在以后的实验报告中我将采用MATLAB进行编程。
+
+
+\section{参考文献}
+
+\printbibliography[heading=none]
+
+\end{document}
