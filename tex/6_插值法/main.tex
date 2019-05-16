@@ -1,0 +1,144 @@
+\input{../style/dependency}
+\input{../style/ctex_setting}
+\input{../style/lstset}
+\input{../style/env_def}
+\input{../style/algorithm_style}
+\input{../style/geometry}
+
+\newcommand{\ThisProjectTitle}{插值法}
+\newcommand{\ThisDate}{2017-11-29}
+\newcommand{\ThisNo}{No.3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{../style/header_table}
+
+\section{实验目的}
+\begin{enumerate}[leftmargin=1.4cm, itemsep=-0.5mm]
+    \item 通过对所学的插值法的理论方法进行编程，提升程序编写水平；
+    \item 通过对理论方法的编程实验，进一步掌握理论方法的每一个细节；
+    \item 检验教材知识的理解与掌握程度。
+    
+\end{enumerate}
+
+\section{实验内容}
+\begin{enumerate}[leftmargin=1.4cm, itemsep=-0.5mm]
+    \item 编制用拉格朗日插值方法进行插值的程序；
+    \item 编制用牛顿插值方法进行插值的程序；
+    \item 要求牛顿插值方法在等距与不等距下两种情况下，程序可以进行自行选择，降低计算量。
+\end{enumerate}
+
+\section{实验平台}
+
+macOS
+
+Python 3.7.3
+
+MATLAB R2019a
+
+\section{实验记录与实验结果分析}
+
+\subsection{第1题}
+\begin{quote}
+    {\kaishu
+    已知正弦函数表：
+    \begin{table}[]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{@{}lllllllll@{}}
+        \toprule
+            &  &  &  &  &  &  &  &  \\ \midrule
+            &  &  &  &  &  &  &  &  \\ \bottomrule
+        \end{tabular}%
+        }
+    \end{table}
+    编写程序，分别用拉格朗日插值和牛顿插值多项式计算$x_0=0.6,\ 0.8,\ 1.0$处的函数值$\sin(0.6)$，$\sin(0.8)$，$\sin(1.0)$的近似值$f(0.6)$，$f(0.8)$，$f(1.0)$
+    }
+\end{quote}
+
+在一般的无大型模块导入的情况下，对于行范数与列范数而言，求解都是比较简单的，但是对于谱范数却并不是很容易，首先一点，难以做到的是特征方程的求解，这个多项式方程，当阶数特别大的时候几乎不能通过公式法求解，而且写一个字符串识别程序也不见得容易。如果能写成，那么在无公式的情况下，用数值方法求解也是不容易的，数值方法的计算量本身就很大，而且得到的一般不是精确解。所以综合来看，利用特征方程求解的这一做法基本放弃。这里直接调用库函数。代码参见\ref{4_1_Normal_Value.py}
+
+\subsubsection{运行结果}
+
+\begin{lstlisting}[style = bash]
+$ python3 4_1_Normal_Value.py 
++-----------------------+-----------------------+
+| infinity normal value |   3                   |
+| 1 normal value        |   3                   |
+| 2 normal value        |   2.302775637731995   |
++-----------------------+-----------------------+
+| infinity normal value |   25                  |
+| 1 normal value        |   16                  |
+| 2 normal value        |   18.046965461137088  |
++-----------------------+-----------------------+
+| infinity normal value |   0.19999999999999998 |
+| 1 normal value        |   0.5                 |
+| 2 normal value        |   0.8278530867147736  |
++-----------------------+-----------------------+
+\end{lstlisting}
+
+\subsubsection{结果分析}
+
+本段代码，是构建了一个简单的封装，可以将已知点作为参数输入，然后输入作为第三个参数的要估计的点的横坐标列表，最终返回一个列表，它储存着根据相应方法得到的插值数值。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{第2题}
+\begin{quote}
+    {\kaishu
+        设$\mathbf{A}=\left[ \begin{array}{rr}{100} & {99} \\ {99} & {98}\end{array}\right]$，计算$\mathbf{A}$的条件数$\mathrm{cond}(\mathbf{A})_{\infty}$及$\mathrm{cond}(\mathbf{A})_{2}$
+    }
+\end{quote}
+
+程序代码参见\ref{4_2_Conditional_Value.py}
+
+\subsubsection{运行结果}
+
+\begin{lstlisting}[style = bash]
+$ python3 4_2_Conditional_Value.py 
++-----------------------+-----------------------+
+| inf Conditional Value |   39601               |
+| 2 Conditional Value   |   39205.999974493694  |
++-----------------------+-----------------------+
+\end{lstlisting}
+
+\subsubsection{结果分析}
+牛顿后插公式，就是在等距节点的基础上，简化了差商的计算，但是需要计算一个独立的差分表。差分表的构建需要依据前插还是后插，其中前插表得到的是一个上三角矩阵，后插公式得到的是一个下三角矩阵。得到了差分表，就可以根据对角线元素，构建差商表。然后根据题目1的已有代码，即可做出图像。
+
+\section{实验体会}
+
+本次实验难度较小，代码量不算大。
+
+之前想过用MATLAB做03号实验，但是后来还是决定继续采用Python3，首先是平台比较开放，其次是本次基本不涉及矩阵，就算是涉及到矩阵运算，也已经有了一个由我独立设计的比较完善的Python包，所以坚持Python可能是一个比较好的选择。
+
+插值算法的核心在于解方程组。而在牛顿插值多项式中，引入差商概念，用差商推导出了一般的插值计算公式，同时给出了很明确的算法与误差估计。其形式与泰勒展开式非常相似，余项也和泰勒公式非常像。
+
+\section{参考文献}
+
+\printbibliography[heading=none]
+
+
+\section{代码附录}
+\label{附录}
+
+\subsubsection{插值法}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf 1-Interpolation-Methods.py},
+    label       =   {1-Interpolation-Methods.py}
+]{../../src/6_插值法/1-Interpolation-Methods.py}
+
+\subsection{条件数}
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf 2-Newton-left-interp-Method.py},
+    label       =   {2-Newton-left-interp-Method.py}
+]{../../src/6_插值法/2-Newton-left-interp-Method.py}
+
+\end{document}
